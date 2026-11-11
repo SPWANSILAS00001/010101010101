@@ -319,15 +319,9 @@ Create("UIAspectRatioConstraint", SymbolAboutImage, {AspectRatio = 1})
 local PageScripts = Create("ScrollingFrame", MainFrame, {Size = UDim2.new(1, -15, 1, -145), Position = UDim2.new(0, 8, 0, 75), BackgroundTransparency = 1, Visible = false, CanvasSize = UDim2.new(0, 0, 0, 770), ScrollBarThickness = 3, ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255), ZIndex = 11})
 Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center})
 
--- Aba Tools restaurada
-local PageTools = Create("ScrollingFrame", MainFrame, {Size = UDim2.new(1, -16, 1, -145), Position = UDim2.new(0, 8, 0, 75), BackgroundTransparency = 1, Visible = false, CanvasSize = UDim2.new(0, 0, 0, 250), ScrollBarThickness = 3, ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255), ScrollingEnabled = true, ZIndex = 11})
-Create("UIGridLayout", PageTools, {CellSize = UDim2.new(0, 64, 0, 72), CellPadding = UDim2.new(0, 4, 0, 8), HorizontalAlignment = Enum.HorizontalAlignment.Center})
-
-local WhiteBarSeparator = Create("Frame", MainFrame, {Name = "WhiteBarSeparator", Size = UDim2.new(1, -20, 0, 4), Position = UDim2.new(0.5, 0, 1, -78), AnchorPoint = Vector2.new(0.5, 0), BackgroundColor3 = Color3.fromRGB(255,255,255), BorderSizePixel = 0, Visible = false, ZIndex = 11})
-
 local FooterBar = Create("Frame", MainFrame, {Size = UDim2.new(1, 0, 0, 65), Position = UDim2.new(0, 0, 1, -65), BackgroundColor3 = Color3.fromRGB(22,22,22), BorderSizePixel = 0, ZIndex = 11})
 
-local CloseBtn = Create("TextButton", FooterBar, {Name = "CloseBtn", Size = UDim2.new(0, 160, 0, 42), Position = UDim2.new(0.5, -80, 0.5, -21), BackgroundColor3 = Color3.fromRGB(0,0,0), Text = "FECHAR UI", TextColor3 = Color3.fromRGB(255,255,255), TextSize = 22, Font = Enum.Font.Arcade, ZIndex = 12}, 6, {Color = Color3.fromRGB(255, 255, 255), Thickness = 1.5, ApplyStrokeMode = Enum.ApplyStrokeMode.Border})
+local CloseBtn = Create("TextButton", FooterBar, {Name = "CloseBtn", Size = UDim2.new(0, 160, 0, 42), Position = UDim2.new(0.5, -80, 0.5, -21), BackgroundColor3 = Color3.fromRGB(0,0,0), Text = "FECHAR UI", TextColor3 = Color3.fromRGB(255,255,255), TextSize = 22, Font = Enum.Font.Arcade, ZIndex = 12}, 6, {Color = Color3.fromRGB(255,255,255), Thickness = 1.5, ApplyStrokeMode = Enum.ApplyStrokeMode.Border})
 
 local function ToggleMenu(state)
     MainFrame.Visible = state
@@ -350,129 +344,117 @@ CreateSymbol(UDim2.new(0, 15, 0.5, -22)); CreateSymbol(UDim2.new(1, -60, 0.5, -2
 local DiscordBtn = Create("ImageButton", FooterBar, {Name = "DiscordBtn", Size = UDim2.new(0, 45, 0, 45), Position = UDim2.new(0, 65, 0.5, -22), BackgroundTransparency = 1, Image = "rbxassetid://135394655692633", Visible = true, ZIndex = 12})
 DiscordBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet("https://raw.githubusercontent.com/YuMAID369/Join-Discordv1/refs/heads/main/Discord%20Open"))() end)
 
--- ExtraFeatureBtn (Anti Stalker) mantido fora, conforme pedido anterior.
-
-local NewFeatureBtn = Create("ImageButton", FooterBar, {
-    Name = "NewFeatureBtn", 
-    Size = UDim2.new(0, 42, 0, 42), 
-    Position = UDim2.new(0.5, -140, 0.5, -21), 
-    BackgroundTransparency = 1, 
-    Image = "rbxassetid://80947825662336", 
-    Visible = false, 
-    ZIndex = 12
-})
-NewFeatureBtn.MouseButton1Click:Connect(function() 
-    PlayClickSound() 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/function-fin/ARMAZ-M-E-ORDEM-/refs/heads/main/Beta%20Ordem"))() 
-end)
-
-local AdapterBtn = Create("ImageButton", FooterBar, {Name = "AdapterBtn", Size = UDim2.new(0, 45, 0, 45), Position = UDim2.new(0, 65, 0.5, -22), BackgroundTransparency = 1, Image = "rbxassetid://73146839145612", Visible = false, ZIndex = 12})
-AdapterBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet("https://raw.githubusercontent.com/function-fin/ADAPTADOR-1.0-V1-SPAWN/refs/heads/main/Modified%20Tools%20Adapter"))() end)
-
-local GuideBtn = Create("ImageButton", FooterBar, {Name = "GuideBtn", Size = UDim2.new(0, 45, 0, 45), Position = UDim2.new(1, -110, 0.5, -22), BackgroundTransparency = 1, Image = "rbxassetid://82557612348731", Visible = false, ZIndex = 12})
-GuideBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet("https://raw.githubusercontent.com/function-fin/AVISO-IMPORTANTE-PAINEL-TOOL/refs/heads/main/TOOL%20AN%C3%9ANCIO%20GUIA"))() end)
-
 local currentPage = 1
 local function updateNavigation(page)
     currentPage = page
     PageAbout.Visible = (page == 1)
     PageScripts.Visible = (page == 2)
-    PageTools.Visible = (page == 3)
-    WhiteBarSeparator.Visible = (page == 3)
 
     DiscordBtn.Visible = (page == 1)
-    NewFeatureBtn.Visible = (page == 2)
-    AdapterBtn.Visible = (page == 3)
-    GuideBtn.Visible = (page == 3)
 
     local titleData = {
         [1] = {text = "Sobre o ᓵ⚍ʖリ╎ℸ ", size = 28, uSize = UDim2.new(1, 0, 0, 50), pos = UDim2.new(0, 0, 0, 5), left = false, right = true},
-        [2] = {text = "BROOKHAVEN", size = 40, uSize = UDim2.new(1, 0, 0, 50), pos = UDim2.new(0, 0, 0, 5), left = true, right = true},
-        [3] = {text = "Painel Tool", size = 35, uSize = UDim2.new(1, -100, 0, 50), pos = UDim2.new(0, 50, 0, 5), left = true, right = false}
+        [2] = {text = "BROOKHAVEN", size = 40, uSize = UDim2.new(1, 0, 0, 50), pos = UDim2.new(0, 0, 0, 5), left = true, right = false}
     }
     local conf = titleData[page]
     Title.Text, Title.TextSize, Title.Size, Title.Position = conf.text, conf.size, conf.uSize, conf.pos
     LeftBtn.Visible, RightBtn.Visible = conf.left, conf.right
 end
 
-RightBtn.MouseButton1Click:Connect(function() if currentPage < 3 then PlayClickSound(); updateNavigation(currentPage + 1) end end)
+RightBtn.MouseButton1Click:Connect(function() if currentPage < 2 then PlayClickSound(); updateNavigation(currentPage + 1) end end)
 LeftBtn.MouseButton1Click:Connect(function() if currentPage > 1 then PlayClickSound(); updateNavigation(currentPage - 1) end end)
 
--- Scripts Funcionais (Apenas 3)
-local ScriptData = {
-    ["BUFF Humanoid Simple"] = "https://raw.githubusercontent.com/function-fin/Buff-Simple/refs/heads/main/SIMPLE%20BUFF%20UPDATE",
-    ["HIDDEN LIBRARY SPWN"] = "https://raw.githubusercontent.com/YuMAID369/Bloco-de-Notas-SpawnCUB/refs/heads/main/Notebook%20Notes",
-    ["FLY GUI MARK"] = "https://raw.githubusercontent.com/YuMAID369/MARK-V1-FLY-GUI-/refs/heads/main/MARK%20FLY%20GUI%20V2",
+-- ==========================================================
+-- BROOKHAVEN: 3 PRIMEIROS ATIVOS (com loadstring), resto inativo
+-- ==========================================================
+local ActiveScripts = {
+    {name = "BUFF Humanoid Simple", link = "https://raw.githubusercontent.com/function-fin/Buff-Simple/refs/heads/main/SIMPLE%20BUFF%20UPDATE"},
+    {name = "FLY GUI MARK",         link = "https://raw.githubusercontent.com/YuMAID369/MARK-V1-FLY-GUI-/refs/heads/main/MARK%20FLY%20GUI%20V2"},
+    {name = "HIDDEN LIBRARY SPWN",  link = "https://raw.githubusercontent.com/YuMAID369/Bloco-de-Notas-SpawnCUB/refs/heads/main/Notebook%20Notes"},
 }
 
--- Scripts Bloqueados (Apenas visuais - DEMO)
-local LockedScriptData = {
-    ["CLOCK V2 Deep SPWN"] = "", ["RSPY 0.0.0.1"] = "", ["DEX OLD"] = "", 
-    ["Terminal Join Server"] = "", ["Sound ALL Beta"] = "", ["CLOCK CREATOR PROPs"] = "", 
-    ["DELETE PLAYER Anti NUKE"] = "", ["Summoner Vehicles Panel"] = "", ["Cronômetro V1"] = "", 
-    ["ENTER ID#"] = "", ["CALCULATOR STUDIES"] = "", ["SPWAN Coordinates"] = "", 
-    ["Vehicle Speed Upgrade"] = "", ["EMOTES DO SPAWN"] = "", ["CHINOOK ANNOY"] = "", 
-    ["SELECT MATTER TP"] = "", ["TIME STOP V1 BETA"] = "", ["SCANNER PARTS AND MATTER"] = "", 
-    ["HUMANOID STATUS VIEW"] = "", ["Documentation"] = "", ["BAN HOUSE"] = "", 
-    ["INSPECIONAR AVATAR"] = "", ["FREEZE EMOTE AND VELOCIDADE"] = "", ["EMOTES"] = "", 
-    ["SHADERS"] = "", ["MANOPLA V1"] = "", ["INFINITY YIELD"] = "", 
-    ["TP TOOL"] = "", ["TP POINT"] = "", ["FREE CAM"] = "", 
-    ["CHAT MICKEY"] = "", ["Prop R15 Structure"] = "", ["TELEKINESIS"] = "", 
-    ["FLING BALL V1"] = "", ["FLING AURA BALL"] = "", ["CHAT HIDDEN SPWN "] = "", 
-    ["VIEW"] = "", ["PHYSICS"] = "", ["SKYBOX NUKE"] = "", 
-    ["SOUND BOX GUI"] = "", ["TOOL FLING ALL SELECT"] = "", ["SELECT MATTER V2"] = "", 
-    ["STAND AND BANG"] = "", ["SELECT MATTER V3"] = "", ["VIEW V2 VRP"] = "", 
-    ["Prop data collector"] = ""
+local InactiveScripts = {
+    ["CLOCK V2 Deep SPWN"] = "https://raw.githubusercontent.com/function-fin/01/refs/heads/main/01",
+    ["RSPY 0.0.0.1"] = "https://raw.githubusercontent.com/function-fin/RSPY-RECONSTRU-DO-E-ADAPTADO/refs/heads/main/SPAWN%20RSPY",
+    ["DEX OLD"] = "https://raw.githubusercontent.com/infyiff/backup/main/dex.lua",
+    ["Terminal Join Server"] = "https://raw.githubusercontent.com/YuMAID369/Terminal-Join-Server-SpwnCub-/refs/heads/main/SPWN%20Join",
+    ["Sound ALL Beta"] = "https://raw.githubusercontent.com/function-fin/Sound-ALL-Project/refs/heads/main/Sound%20ALL",
+    ["CLOCK CREATOR PROPs"] = "https://raw.githubusercontent.com/YuMAID369/CLOCK-Creator-Project-PROP-SPWN/refs/heads/main/CLOCK%20Creator%20Project%20PROP%20SPWN%20CLIENT%20V1",
+    ["DELETE PLAYER Anti NUKE"] = "https://raw.githubusercontent.com/YuMAID369/Anti-PLAYER-/refs/heads/main/REMOVE%20PLAYER",
+    ["Summoner Vehicles Panel"] = "https://raw.githubusercontent.com/YuMAID369/VEHICLE-KILL-PANEL-/refs/heads/main/Summoner%20Vehicles%20V1%20KILL",
+    ["Cronômetro V1"] = "https://raw.githubusercontent.com/YuMAID369/Cron-metro-Spwn-v1/refs/heads/main/00%3A00%3A00",
+    ["ENTER ID#"] = "https://raw.githubusercontent.com/YuMAID369/ENTER-ID-/refs/heads/main/ENTER%20ID%23%20000",
+    ["CALCULATOR STUDIES"] = "https://raw.githubusercontent.com/function-fin/Roblox-Studs-Calculator-Beta/refs/heads/main/STUDS%20Calculecter0.0.0.0.1",
+    ["SPWAN Coordinates"] = "https://raw.githubusercontent.com/YuMAID369/Coordenadas-Ui-/refs/heads/main/Coordenadas%20SPWN%20V1",
+    ["Vehicle Speed Upgrade"] = "https://raw.githubusercontent.com/function-fin/Ve-culo-Upgrade-Turbo-/refs/heads/main/Vehicle%20S",
+    ["EMOTES DO SPAWN"] = "https://raw.githubusercontent.com/function-fin/Roblox-/refs/heads/main/TESTES",
+    ["CHINOOK ANNOY"] = "https://raw.githubusercontent.com/function-fin/PROJECT-CHINOOK/refs/heads/main/0.1",
+    ["SELECT MATTER TP"] = "https://raw.githubusercontent.com/YuMAID369/ToolSpwnTp/refs/heads/main/SPWNTPtool",
+    ["TIME STOP V1 BETA"] = "https://raw.githubusercontent.com/YuMAID369/TIME-STOP-V1-SPWN-/refs/heads/main/Stop%20time%20SpwnCub",
+    ["SCANNER PARTS AND MATTER"] = "https://raw.githubusercontent.com/function-fin/Scanner-MATTER-Server/refs/heads/main/Scanner%20MATTER%20Beta",
+    ["HUMANOID STATUS VIEW"] = "https://raw.githubusercontent.com/YuMAID369/Humanoid-Status-VIEW-/refs/heads/main/SPWNCUB",
+    ["Documentation"] = "https://raw.githubusercontent.com/function-fin/Lore-confidential-document/refs/heads/main/Paperwork",
+    ["BAN HOUSE"] = "https://raw.githubusercontent.com/YuMAID369/BAN-HOUSE-/refs/heads/main/BrookHaven",
+    ["INSPECIONAR AVATAR"] = "https://raw.githubusercontent.com/YuMAID369/INSPECT-AV2/refs/heads/main/idsAV2",
+    ["FREEZE EMOTE AND VELOCIDADE"] = "https://raw.githubusercontent.com/YuMAID369/FreezeEmote-/refs/heads/main/Universal%20Emote%20Lock",
+    ["EMOTES"] = "https://rawscripts.net/raw/Universal-Script-7yd7-I-Emote-Script-48024",
+    ["SHADERS"] = "https://raw.githubusercontent.com/YuMAID369/Shaders-V1/refs/heads/main/CUBNIT",
+    ["MANOPLA V1"] = "https://raw.githubusercontent.com/YuMAID369/MANOPLA-V2/refs/heads/main/HAND",
+    ["INFINITY YIELD"] = "https://raw.githubusercontent.com/EdgeIY/infiniteyield/master/source",
+    ["TP TOOL"] = "https://raw.githubusercontent.com/YuMAID369/TP-TOOL-v1/refs/heads/main/TP%20Tool",
+    ["TP POINT"] = "https://raw.githubusercontent.com/YuMAID369/Teletransporte-/refs/heads/main/SpawnCUB",
+    ["FREE CAM"] = "https://raw.githubusercontent.com/YuMAID369/SpawnCam/refs/heads/main/Universal%20Cam",
+    ["CHAT MICKEY"] = "https://rawscripts.net/raw/Brookhaven-RP-Mickey-Chat-85762",
+    ["Prop R15 Structure"] = "https://raw.githubusercontent.com/function-fin/ROBOT-R15/refs/heads/main/PROP%20ROBOT",
+    ["TELEKINESIS"] = "https://raw.githubusercontent.com/YuMAID369/TELEKINESIS-/refs/heads/main/Telekinesis%20Tool",
+    ["FLING BALL V1"] = "https://raw.githubusercontent.com/YuMAID369/Fling-Ball-Cubnit-V1/refs/heads/main/Kill%20Ball%20V1",
+    ["FLING AURA BALL"] = "https://raw.githubusercontent.com/function-fin/Pr0t0tip0-aura-BA-/refs/heads/main/Aura%20BA/Aura%20BALL%20x1v2",
+    ["CHAT HIDDEN SPWN "] = "https://raw.githubusercontent.com/YuMAID369/Chat-Privado/refs/heads/main/OpenChatBeta",
+    ["VIEW"] = "https://raw.githubusercontent.com/YuMAID369/View-SpawnCUB-/refs/heads/main/View%20Din%C3%A2mico%20Beta",
+    ["PHYSICS"] = "https://raw.githubusercontent.com/YuMAID369/Humanoid-physics-manipulation/refs/heads/main/Physics%20Alterer",
+    ["SKYBOX NUKE"] = "https://raw.githubusercontent.com/YuMAID369/SKYBOX-V1/refs/heads/main/SKYBOX-SPAWN",
+    ["SOUND BOX GUI"] = "https://raw.githubusercontent.com/YuMAID369/Id-Brook-haven-m-sica/refs/heads/main/SpwnSom",
+    ["TOOL FLING ALL SELECT"] = "https://raw.githubusercontent.com/YuMAID369/Atom-selector-/refs/heads/main/Target%20Kill",
+    ["SELECT MATTER V2"] = "https://raw.githubusercontent.com/YuMAID369/SELECT-MATTER/refs/heads/main/SPWN%20KILL%20V2%20SELECT",
+    ["STAND AND BANG"] = "https://raw.githubusercontent.com/function-fin/Project-Bang-Stand/refs/heads/main/Experiment%20Stand",
+    ["SELECT MATTER V3"] = "https://raw.githubusercontent.com/YuMAID369/SELECT-MATTER-V3-/refs/heads/main/FLING%20V3%20TOOL%20SPWN",
+    ["VIEW V2 VRP"] = "https://raw.githubusercontent.com/YuMAID369/UI-View-V2-VPR/refs/heads/main/V2View%20VPR",
+    ["Prop data collector"] = "https://raw.githubusercontent.com/function-fin/Prop-data-collector-/refs/heads/main/Analyze%20structured%20data",
 }
 
--- Layout para os 3 Funcionais (Canto)
-local FunctionalLayout = Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 8, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Left, SortOrder = Enum.SortOrder.LayoutOrder})
-
-for name, link in pairs(ScriptData) do
-    local btn = Create("TextButton", PageScripts, {BackgroundColor3 = Color3.fromRGB(35,35,35), Text = name, TextColor3 = Color3.fromRGB(255,255,255), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, ZIndex = 12}, 4)
-    btn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(link))() end)
+-- Cria os 3 ativos primeiro (ordem fixa)
+for _, data in ipairs(ActiveScripts) do
+    local btn = Create("TextButton", PageScripts, {
+        BackgroundColor3 = Color3.fromRGB(35,35,35),
+        Text = data.name,
+        TextColor3 = Color3.fromRGB(255,255,255),
+        TextSize = 15,
+        Font = Enum.Font.Arcade,
+        TextWrapped = true,
+        TextXAlignment = Enum.TextXAlignment.Center,
+        TextYAlignment = Enum.TextYAlignment.Center,
+        ZIndex = 12
+    }, 4)
+    btn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(data.link))() end)
 end
 
--- Layout para os Bloqueados (Abaixo dos funcionais)
-local LockedLayout = Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center, SortOrder = Enum.SortOrder.LayoutOrder})
-
--- Correção para o layout não sobrepor o primeiro
-FunctionalLayout.Parent = PageScripts
-LockedLayout.Parent = PageScripts
-PageScripts.CanvasSize = UDim2.new(0, 0, 0, 0) -- Será recalculado automaticamente pelo UIListLayout
-
--- Para garantir que os dois GridLayouts não entrem em conflito, o ideal é usar UIListLayout para agrupar os dois.
-FunctionalLayout:Destroy()
-LockedLayout:Destroy()
-
-local PageScriptsList = Create("UIListLayout", PageScripts, {Padding = UDim.new(0, 10), SortOrder = Enum.SortOrder.LayoutOrder})
-
-local FuncGrid = Create("Frame", PageScripts, {BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 60), LayoutOrder = 1})
-Create("UIGridLayout", FuncGrid, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 8, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Left})
-
-for name, link in pairs(ScriptData) do
-    local btn = Create("TextButton", FuncGrid, {BackgroundColor3 = Color3.fromRGB(35,35,35), Text = name, TextColor3 = Color3.fromRGB(255,255,255), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, ZIndex = 12}, 4)
-    btn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(link))() end)
-end
-
-local LockedGrid = Create("Frame", PageScripts, {BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 770), LayoutOrder = 2})
-Create("UIGridLayout", LockedGrid, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center})
-
-for name, _ in pairs(LockedScriptData) do
-    -- Cor mais fraca e sem função de clique (bloqueado)
-    local btn = Create("TextButton", LockedGrid, {BackgroundColor3 = Color3.fromRGB(15, 15, 15), Text = name, TextColor3 = Color3.fromRGB(100, 100, 100), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, AutoButtonColor = false, ZIndex = 12}, 4)
-end
-
-
--- Tools (Bloqueadas visualmente)
-local ToolData = {
-    {name = "Fling Ball\nTool"}, {name = "TOOL\nTELEKINESIS"}, {name = "TP TOOL"}, 
-    {name = "FLING\nAll SELECT V1"}, {name = "FLING\nAll SELECT V2"}, {name = "SELECT\nMATTER TP"}, 
-    {name = "SELECT\nMATTER V3"}, {name = "FLING AURA\nBALL"}
-}
-
-for _, data in ipairs(ToolData) do
-    local toolBtn = Create("TextButton", PageTools, {BackgroundColor3 = Color3.fromRGB(20, 20, 20), Text = data.name, TextColor3 = Color3.fromRGB(80, 80, 80), TextSize = 14, Font = Enum.Font.LuckiestGuy, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, AutoButtonColor = false, ZIndex = 12}, 2)
+-- Cria os inativos (esmaecidos, sem loadstring)
+for name, _link in pairs(InactiveScripts) do
+    local btn = Create("TextButton", PageScripts, {
+        BackgroundColor3 = Color3.fromRGB(25,25,25),
+        BackgroundTransparency = 0.55,
+        Text = name,
+        TextColor3 = Color3.fromRGB(150,150,150),
+        TextTransparency = 0.45,
+        TextSize = 15,
+        Font = Enum.Font.Arcade,
+        TextWrapped = true,
+        TextXAlignment = Enum.TextXAlignment.Center,
+        TextYAlignment = Enum.TextYAlignment.Center,
+        AutoButtonColor = false,
+        ZIndex = 12
+    }, 4)
+    -- sem MouseButton1Click: não executa nada
 end
 
 local CloseConfirmFrame = Create("Frame", ScreenGui, {Name = "CloseConfirmFrame", AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 340, 0, 185), BackgroundColor3 = Color3.fromRGB(0, 0, 0), BorderSizePixel = 0, Active = true, Draggable = true, Visible = false, ZIndex = 100}, nil, {Color = Color3.fromRGB(255, 255, 255), Thickness = 2, ApplyStrokeMode = Enum.ApplyStrokeMode.Border})
