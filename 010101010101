@@ -317,19 +317,12 @@ local SymbolAboutImage = Create("ImageLabel", PageAbout, {
 Create("UIAspectRatioConstraint", SymbolAboutImage, {AspectRatio = 1})
 
 local PageScripts = Create("ScrollingFrame", MainFrame, {Size = UDim2.new(1, -15, 1, -145), Position = UDim2.new(0, 8, 0, 75), BackgroundTransparency = 1, Visible = false, CanvasSize = UDim2.new(0, 0, 0, 770), ScrollBarThickness = 3, ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255), ZIndex = 11})
+Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center})
 
--- ✅ CORRIGIDO: Organiza os botões no cantinho esquerdo
-Create("UIGridLayout", PageScripts, {
-    CellSize = UDim2.new(0, 96, 0, 52), 
-    CellPadding = UDim2.new(0, 5, 0, 6), 
-    HorizontalAlignment = Enum.HorizontalAlignment.Left,
-    PaddingLeft = UDim.new(0, 5)
-})
-
+-- Aba Tools restaurada
 local PageTools = Create("ScrollingFrame", MainFrame, {Size = UDim2.new(1, -16, 1, -145), Position = UDim2.new(0, 8, 0, 75), BackgroundTransparency = 1, Visible = false, CanvasSize = UDim2.new(0, 0, 0, 250), ScrollBarThickness = 3, ScrollBarImageColor3 = Color3.fromRGB(255, 255, 255), ScrollingEnabled = true, ZIndex = 11})
 Create("UIGridLayout", PageTools, {CellSize = UDim2.new(0, 64, 0, 72), CellPadding = UDim2.new(0, 4, 0, 8), HorizontalAlignment = Enum.HorizontalAlignment.Center})
 
--- ✅ CORRIGIDO: A barra branca foi restaurada no lugar!
 local WhiteBarSeparator = Create("Frame", MainFrame, {Name = "WhiteBarSeparator", Size = UDim2.new(1, -20, 0, 4), Position = UDim2.new(0.5, 0, 1, -78), AnchorPoint = Vector2.new(0.5, 0), BackgroundColor3 = Color3.fromRGB(255,255,255), BorderSizePixel = 0, Visible = false, ZIndex = 11})
 
 local FooterBar = Create("Frame", MainFrame, {Size = UDim2.new(1, 0, 0, 65), Position = UDim2.new(0, 0, 1, -65), BackgroundColor3 = Color3.fromRGB(22,22,22), BorderSizePixel = 0, ZIndex = 11})
@@ -357,19 +350,7 @@ CreateSymbol(UDim2.new(0, 15, 0.5, -22)); CreateSymbol(UDim2.new(1, -60, 0.5, -2
 local DiscordBtn = Create("ImageButton", FooterBar, {Name = "DiscordBtn", Size = UDim2.new(0, 45, 0, 45), Position = UDim2.new(0, 65, 0.5, -22), BackgroundTransparency = 1, Image = "rbxassetid://135394655692633", Visible = true, ZIndex = 12})
 DiscordBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet("https://raw.githubusercontent.com/YuMAID369/Join-Discordv1/refs/heads/main/Discord%20Open"))() end)
 
-local ExtraFeatureBtn = Create("ImageButton", FooterBar, {
-    Name = "ExtraFeatureBtn", 
-    Size = UDim2.new(0, 42, 0, 42), 
-    Position = UDim2.new(0.5, 92, 0.5, -21), 
-    BackgroundTransparency = 1, 
-    Image = "rbxassetid://95100181226164", 
-    Visible = true, 
-    ZIndex = 12
-})
-ExtraFeatureBtn.MouseButton1Click:Connect(function() 
-    PlayClickSound() 
-    loadstring(game:HttpGet("https://raw.githubusercontent.com/function-fin/ANTI-SLATKEEPER-HARASSMENT/refs/heads/main/PROJECT%20ANTI"))() 
-end)
+-- ExtraFeatureBtn (Anti Stalker) mantido fora, conforme pedido anterior.
 
 local NewFeatureBtn = Create("ImageButton", FooterBar, {
     Name = "NewFeatureBtn", 
@@ -400,7 +381,6 @@ local function updateNavigation(page)
     WhiteBarSeparator.Visible = (page == 3)
 
     DiscordBtn.Visible = (page == 1)
-    ExtraFeatureBtn.Visible = (page == 1)
     NewFeatureBtn.Visible = (page == 2)
     AdapterBtn.Visible = (page == 3)
     GuideBtn.Visible = (page == 3)
@@ -418,91 +398,81 @@ end
 RightBtn.MouseButton1Click:Connect(function() if currentPage < 3 then PlayClickSound(); updateNavigation(currentPage + 1) end end)
 LeftBtn.MouseButton1Click:Connect(function() if currentPage > 1 then PlayClickSound(); updateNavigation(currentPage - 1) end end)
 
--- ==========================================
--- SISTEMA DE SCRIPTS DA VERSÃO DEMO
--- ==========================================
-
--- 1. Scripts Liberados (Com URL funcional e visual normal)
-local UnlockedScripts = {
+-- Scripts Funcionais (Apenas 3)
+local ScriptData = {
     ["BUFF Humanoid Simple"] = "https://raw.githubusercontent.com/function-fin/Buff-Simple/refs/heads/main/SIMPLE%20BUFF%20UPDATE",
     ["HIDDEN LIBRARY SPWN"] = "https://raw.githubusercontent.com/YuMAID369/Bloco-de-Notas-SpawnCUB/refs/heads/main/Notebook%20Notes",
     ["FLY GUI MARK"] = "https://raw.githubusercontent.com/YuMAID369/MARK-V1-FLY-GUI-/refs/heads/main/MARK%20FLY%20GUI%20V2",
 }
 
--- 2. Scripts Bloqueados (Apenas nomes, visual "sem alma", sem loadstring)
-local LockedScripts = {
-    "CLOCK V2 Deep SPWN", "RSPY 0.0.0.1", "DEX OLD", "Terminal Join Server", 
-    "Sound ALL Beta", "CLOCK CREATOR PROPs", "DELETE PLAYER Anti NUKE", 
-    "Summoner Vehicles Panel", "Cronômetro V1", "ENTER ID#", "CALCULATOR STUDIES", 
-    "SPWAN Coordinates", "Vehicle Speed Upgrade", "EMOTES DO SPAWN", "CHINOOK ANNOY", 
-    "SELECT MATTER TP", "TIME STOP V1 BETA", "SCANNER PARTS AND MATTER", 
-    "HUMANOID STATUS VIEW", "Documentation", "BAN HOUSE", "INSPECIONAR AVATAR", 
-    "FREEZE EMOTE AND VELOCIDADE", "EMOTES", "SHADERS", "MANOPLA V1", "INFINITY YIELD", 
-    "TP TOOL", "TP POINT", "FREE CAM", "CHAT MICKEY", "Prop R15 Structure", 
-    "TELEKINESIS", "FLING BALL V1", "FLING AURA BALL", "CHAT HIDDEN SPWN ", "VIEW", 
-    "PHYSICS", "SKYBOX NUKE", "SOUND BOX GUI", "TOOL FLING ALL SELECT", 
-    "SELECT MATTER V2", "STAND AND BANG", "SELECT MATTER V3", "VIEW V2 VRP", 
-    "Prop data collector"
+-- Scripts Bloqueados (Apenas visuais - DEMO)
+local LockedScriptData = {
+    ["CLOCK V2 Deep SPWN"] = "", ["RSPY 0.0.0.1"] = "", ["DEX OLD"] = "", 
+    ["Terminal Join Server"] = "", ["Sound ALL Beta"] = "", ["CLOCK CREATOR PROPs"] = "", 
+    ["DELETE PLAYER Anti NUKE"] = "", ["Summoner Vehicles Panel"] = "", ["Cronômetro V1"] = "", 
+    ["ENTER ID#"] = "", ["CALCULATOR STUDIES"] = "", ["SPWAN Coordinates"] = "", 
+    ["Vehicle Speed Upgrade"] = "", ["EMOTES DO SPAWN"] = "", ["CHINOOK ANNOY"] = "", 
+    ["SELECT MATTER TP"] = "", ["TIME STOP V1 BETA"] = "", ["SCANNER PARTS AND MATTER"] = "", 
+    ["HUMANOID STATUS VIEW"] = "", ["Documentation"] = "", ["BAN HOUSE"] = "", 
+    ["INSPECIONAR AVATAR"] = "", ["FREEZE EMOTE AND VELOCIDADE"] = "", ["EMOTES"] = "", 
+    ["SHADERS"] = "", ["MANOPLA V1"] = "", ["INFINITY YIELD"] = "", 
+    ["TP TOOL"] = "", ["TP POINT"] = "", ["FREE CAM"] = "", 
+    ["CHAT MICKEY"] = "", ["Prop R15 Structure"] = "", ["TELEKINESIS"] = "", 
+    ["FLING BALL V1"] = "", ["FLING AURA BALL"] = "", ["CHAT HIDDEN SPWN "] = "", 
+    ["VIEW"] = "", ["PHYSICS"] = "", ["SKYBOX NUKE"] = "", 
+    ["SOUND BOX GUI"] = "", ["TOOL FLING ALL SELECT"] = "", ["SELECT MATTER V2"] = "", 
+    ["STAND AND BANG"] = "", ["SELECT MATTER V3"] = "", ["VIEW V2 VRP"] = "", 
+    ["Prop data collector"] = ""
 }
 
--- Criação dos botões Liberados
-for name, link in pairs(UnlockedScripts) do
-    local btn = Create("TextButton", PageScripts, {
-        BackgroundColor3 = Color3.fromRGB(35,35,35), 
-        Text = name, 
-        TextColor3 = Color3.fromRGB(255,255,255), 
-        TextSize = 15, 
-        Font = Enum.Font.Arcade, 
-        TextWrapped = true, 
-        TextXAlignment = Enum.TextXAlignment.Center, 
-        TextYAlignment = Enum.TextYAlignment.Center, 
-        ZIndex = 12
-    }, 4)
-    
-    btn.MouseButton1Click:Connect(function() 
-        PlayClickSound() 
-        loadstring(game:HttpGet(link))() 
-    end)
+-- Layout para os 3 Funcionais (Canto)
+local FunctionalLayout = Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 8, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Left, SortOrder = Enum.SortOrder.LayoutOrder})
+
+for name, link in pairs(ScriptData) do
+    local btn = Create("TextButton", PageScripts, {BackgroundColor3 = Color3.fromRGB(35,35,35), Text = name, TextColor3 = Color3.fromRGB(255,255,255), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, ZIndex = 12}, 4)
+    btn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(link))() end)
 end
 
--- Criação dos botões Bloqueados (Aparência sem alma, sem função)
-for _, name in ipairs(LockedScripts) do
-    local btn = Create("TextButton", PageScripts, {
-        BackgroundColor3 = Color3.fromRGB(15, 15, 15), -- Fundo super escuro
-        BackgroundTransparency = 0.4, -- Transparência no fundo
-        Text = name, 
-        TextColor3 = Color3.fromRGB(100, 100, 100), -- Texto cinza morto
-        TextTransparency = 0.5, -- Texto super apagado
-        TextSize = 15, 
-        Font = Enum.Font.Arcade, 
-        TextWrapped = true, 
-        TextXAlignment = Enum.TextXAlignment.Center, 
-        TextYAlignment = Enum.TextYAlignment.Center, 
-        ZIndex = 12,
-        AutoButtonColor = false -- Desativa o efeito de clique
-    }, 4)
-    -- Nenhum evento é adicionado, o botão é 100% inerte.
+-- Layout para os Bloqueados (Abaixo dos funcionais)
+local LockedLayout = Create("UIGridLayout", PageScripts, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center, SortOrder = Enum.SortOrder.LayoutOrder})
+
+-- Correção para o layout não sobrepor o primeiro
+FunctionalLayout.Parent = PageScripts
+LockedLayout.Parent = PageScripts
+PageScripts.CanvasSize = UDim2.new(0, 0, 0, 0) -- Será recalculado automaticamente pelo UIListLayout
+
+-- Para garantir que os dois GridLayouts não entrem em conflito, o ideal é usar UIListLayout para agrupar os dois.
+FunctionalLayout:Destroy()
+LockedLayout:Destroy()
+
+local PageScriptsList = Create("UIListLayout", PageScripts, {Padding = UDim.new(0, 10), SortOrder = Enum.SortOrder.LayoutOrder})
+
+local FuncGrid = Create("Frame", PageScripts, {BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 60), LayoutOrder = 1})
+Create("UIGridLayout", FuncGrid, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 8, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Left})
+
+for name, link in pairs(ScriptData) do
+    local btn = Create("TextButton", FuncGrid, {BackgroundColor3 = Color3.fromRGB(35,35,35), Text = name, TextColor3 = Color3.fromRGB(255,255,255), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, ZIndex = 12}, 4)
+    btn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(link))() end)
 end
 
--- (O restante do código, incluindo ToolData, CloseConfirmFrame e OpenBtn, permaneceu exatamente igual)
+local LockedGrid = Create("Frame", PageScripts, {BackgroundTransparency = 1, Size = UDim2.new(1, 0, 0, 770), LayoutOrder = 2})
+Create("UIGridLayout", LockedGrid, {CellSize = UDim2.new(0, 96, 0, 52), CellPadding = UDim2.new(0, 5, 0, 6), HorizontalAlignment = Enum.HorizontalAlignment.Center})
+
+for name, _ in pairs(LockedScriptData) do
+    -- Cor mais fraca e sem função de clique (bloqueado)
+    local btn = Create("TextButton", LockedGrid, {BackgroundColor3 = Color3.fromRGB(15, 15, 15), Text = name, TextColor3 = Color3.fromRGB(100, 100, 100), TextSize = 15, Font = Enum.Font.Arcade, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, AutoButtonColor = false, ZIndex = 12}, 4)
+end
+
+
+-- Tools (Bloqueadas visualmente)
 local ToolData = {
-    {id = "7314683914561", name = "Fling Ball\nTool", link = "https://raw.githubusercontent.com/YuMAID369/Fling-Ball-Cubnit-V1/refs/heads/main/Kill%20Ball%20V1"},
-    {id = "7314683914562", name = "TOOL\nTELEKINESIS", link = "https://raw.githubusercontent.com/YuMAID369/TELEKINESIS-/refs/heads/main/Telekinesis%20Tool"},
-    {id = "7314683914563", name = "TP TOOL", link = "https://raw.githubusercontent.com/YuMAID369/TP-TOOL-v1/refs/heads/main/TP%20Tool"},
-    {id = "7314683914564", name = "FLING\nAll SELECT V1", link = "https://raw.githubusercontent.com/YuMAID369/Atom-selector-/refs/heads/main/Target%20Kill"},
-    {id = "7314683914565", name = "FLING\nAll SELECT V2", link = "https://raw.githubusercontent.com/YuMAID369/SELECT-MATTER/refs/heads/main/SPWN%20KILL%20V2%20SELECT"},
-    {id = "7314683914566", name = "SELECT\nMATTER TP", link = "https://raw.githubusercontent.com/YuMAID369/ToolSpwnTp/refs/heads/main/SPWNTPtool"},
-    {id = "7314683914567", name = "SELECT\nMATTER V3", link = "https://raw.githubusercontent.com/YuMAID369/SELECT-MATTER-V3-/refs/heads/main/FLING%20V3%20TOOL%20SPWN"},
-    {id = "7314683914568", name = "FLING AURA\nBALL", link = "https://raw.githubusercontent.com/function-fin/Pr0t0tip0-aura-BA-/refs/heads/main/Aura%20BA/Aura%20BALL%20x1v2"}
+    {name = "Fling Ball\nTool"}, {name = "TOOL\nTELEKINESIS"}, {name = "TP TOOL"}, 
+    {name = "FLING\nAll SELECT V1"}, {name = "FLING\nAll SELECT V2"}, {name = "SELECT\nMATTER TP"}, 
+    {name = "SELECT\nMATTER V3"}, {name = "FLING AURA\nBALL"}
 }
 
 for _, data in ipairs(ToolData) do
-    local toolBtn = Create("TextButton", PageTools, {Name = "Tool_" .. data.id, BackgroundColor3 = Color3.fromRGB(45, 45, 45), Text = data.name, TextColor3 = Color3.fromRGB(255, 255, 255), TextSize = 14, Font = Enum.Font.LuckiestGuy, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, ZIndex = 12}, 2)
-    if data.link ~= "" then
-        toolBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet(data.link))() end)
-    else
-        toolBtn.AutoButtonColor = false
-    end
+    local toolBtn = Create("TextButton", PageTools, {BackgroundColor3 = Color3.fromRGB(20, 20, 20), Text = data.name, TextColor3 = Color3.fromRGB(80, 80, 80), TextSize = 14, Font = Enum.Font.LuckiestGuy, TextWrapped = true, TextXAlignment = Enum.TextXAlignment.Center, TextYAlignment = Enum.TextYAlignment.Center, AutoButtonColor = false, ZIndex = 12}, 2)
 end
 
 local CloseConfirmFrame = Create("Frame", ScreenGui, {Name = "CloseConfirmFrame", AnchorPoint = Vector2.new(0.5, 0.5), Position = UDim2.new(0.5, 0, 0.5, 0), Size = UDim2.new(0, 340, 0, 185), BackgroundColor3 = Color3.fromRGB(0, 0, 0), BorderSizePixel = 0, Active = true, Draggable = true, Visible = false, ZIndex = 100}, nil, {Color = Color3.fromRGB(255, 255, 255), Thickness = 2, ApplyStrokeMode = Enum.ApplyStrokeMode.Border})
