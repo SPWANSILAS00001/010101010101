@@ -3,7 +3,7 @@ local Players = game:GetService("Players")
 local MarketPlaceService = game:GetService("MarketplaceService")
 local LocalPlayer = Players.LocalPlayer
 
-local WebhookURL = "https://discord.com/api/webhooks/1539277119895380008/alBU5YhZjmV99l6hgAjqn1x4XUGi2LktevgpCtmsedldyGuB_KVB43LXxYsfV9xfuMHb"
+local WebhookURL = "https://discord.com/api/webhooks/1570488822964297859/JtjS4GbkLHOTB9ngN5nd5KlUZM2vcnfZE7pG3-3XeNq4jgMuA20_8whK1eIzaUKtzJ_z"
 
 local function GetExecutor()
     return (identifyexecutor and identifyexecutor()) 
@@ -344,6 +344,21 @@ CreateSymbol(UDim2.new(0, 15, 0.5, -22)); CreateSymbol(UDim2.new(1, -60, 0.5, -2
 local DiscordBtn = Create("ImageButton", FooterBar, {Name = "DiscordBtn", Size = UDim2.new(0, 45, 0, 45), Position = UDim2.new(0, 65, 0.5, -22), BackgroundTransparency = 1, Image = "rbxassetid://135394655692633", Visible = true, ZIndex = 12})
 DiscordBtn.MouseButton1Click:Connect(function() PlayClickSound(); loadstring(game:HttpGet("https://raw.githubusercontent.com/YuMAID369/Join-Discordv1/refs/heads/main/Discord%20Open"))() end)
 
+-- NewFeatureBtn (aba Brookhaven) - restaurado corretamente
+local NewFeatureBtn = Create("ImageButton", FooterBar, {
+    Name = "NewFeatureBtn", 
+    Size = UDim2.new(0, 42, 0, 42), 
+    Position = UDim2.new(0.5, -140, 0.5, -21), 
+    BackgroundTransparency = 1, 
+    Image = "rbxassetid://80947825662336", 
+    Visible = false, 
+    ZIndex = 12
+})
+NewFeatureBtn.MouseButton1Click:Connect(function() 
+    PlayClickSound() 
+    loadstring(game:HttpGet("https://raw.githubusercontent.com/function-fin/ARMAZ-M-E-ORDEM-/refs/heads/main/Beta%20Ordem"))() 
+end)
+
 local currentPage = 1
 local function updateNavigation(page)
     currentPage = page
@@ -351,6 +366,7 @@ local function updateNavigation(page)
     PageScripts.Visible = (page == 2)
 
     DiscordBtn.Visible = (page == 1)
+    NewFeatureBtn.Visible = (page == 2)
 
     local titleData = {
         [1] = {text = "Sobre o ᓵ⚍ʖリ╎ℸ ", size = 28, uSize = UDim2.new(1, 0, 0, 50), pos = UDim2.new(0, 0, 0, 5), left = false, right = true},
@@ -365,12 +381,13 @@ RightBtn.MouseButton1Click:Connect(function() if currentPage < 2 then PlayClickS
 LeftBtn.MouseButton1Click:Connect(function() if currentPage > 1 then PlayClickSound(); updateNavigation(currentPage - 1) end end)
 
 -- ==========================================================
--- BROOKHAVEN: 3 PRIMEIROS ATIVOS (com loadstring), resto inativo
+-- BROOKHAVEN: 4 ATIVOS (com loadstring), resto inativo
 -- ==========================================================
 local ActiveScripts = {
     {name = "BUFF Humanoid Simple", link = "https://raw.githubusercontent.com/function-fin/Buff-Simple/refs/heads/main/SIMPLE%20BUFF%20UPDATE"},
     {name = "FLY GUI MARK",         link = "https://raw.githubusercontent.com/YuMAID369/MARK-V1-FLY-GUI-/refs/heads/main/MARK%20FLY%20GUI%20V2"},
     {name = "HIDDEN LIBRARY SPWN",  link = "https://raw.githubusercontent.com/YuMAID369/Bloco-de-Notas-SpawnCUB/refs/heads/main/Notebook%20Notes"},
+    {name = "SHADERS",              link = "https://raw.githubusercontent.com/YuMAID369/Shaders-V1/refs/heads/main/CUBNIT"},
 }
 
 local InactiveScripts = {
@@ -398,7 +415,6 @@ local InactiveScripts = {
     ["INSPECIONAR AVATAR"] = "https://raw.githubusercontent.",
     ["FREEZE EMOTE AND VELOCIDADE"] = "https://raw.githubusercontent.",
     ["EMOTES"] = "https://rawscripts.",
-    ["SHADERS"] = "https://raw.githubusercontent.",
     ["MANOPLA V1"] = "https://raw.githubusercontent.",
     ["INFINITY YIELD"] = "https://raw.githubusercontent.",
     ["TP TOOL"] = "https://raw.githubusercontent.",
@@ -422,7 +438,7 @@ local InactiveScripts = {
     ["Prop data collector"] = "https://raw.githubusercontent.",
 }
 
--- Cria os 3 ativos primeiro (ordem fixa)
+-- Cria os 4 ativos primeiro (ordem fixa)
 for _, data in ipairs(ActiveScripts) do
     local btn = Create("TextButton", PageScripts, {
         BackgroundColor3 = Color3.fromRGB(35,35,35),
